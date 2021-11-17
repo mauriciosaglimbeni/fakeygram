@@ -83,7 +83,7 @@
             if($password == $cpassword) { 
             
                 $image = basename($_FILES["pfp"]["name"]);
-                $insertUser = "INSERT INTO users(`name`,`email`,`password`,`pfp`) VALUES('$name','$email','$hashPassword','$image')";
+                $insertUser = "INSERT INTO users(name,email,password,pfp) VALUES('$name','$email','$hashPassword','$image')";
                 $insertUserStatus = mysqli_query($conn,$insertUser) or die(mysqli_error($conn));
     
                 if($insertUserStatus) { 

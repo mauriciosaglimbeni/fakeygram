@@ -7,7 +7,7 @@
     if(isset($_SESSION['email'])) { 
         $email = $_SESSION['email'];
     } else {
-      header('Location: ./index.php?message=Please login first!');
+      header('Location: ./index.php?message=Please login first');
     }
 ?>
 <!DOCTYPE html>
