@@ -23,8 +23,8 @@
     if(isset($_POST['cpassword'])) {
         $cpassword = $_POST['cpassword'];
     }
-
-    $newPassword = password_hash($_POST['password'],PASSWORD_DEFAULT);
+    // hashing the password
+    $hashPassword = password_hash($password,PASSWORD_DEFAULT);
 
     // setting up the image settings for profile picture directories
     $target_dir = "../pfp/";
@@ -83,7 +83,7 @@
             if($password == $cpassword) { 
             
                 $image = basename($_FILES["pfp"]["name"]);
-                $insertUser = "INSERT INTO users(`name`,`email`,`password`,`pfp`) VALUES('$name','$email','$newPassword','$image')";
+                $insertUser = "INSERT INTO users(`name`,`email`,`password`,`pfp`) VALUES('$name','$email','$hashPassword','$image')";
                 $insertUserStatus = mysqli_query($conn,$insertUser) or die(mysqli_error($conn));
     
                 if($insertUserStatus) { 

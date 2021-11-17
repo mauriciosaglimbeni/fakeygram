@@ -18,16 +18,16 @@
 
 // when fields are not empty
     if($email != "" && $password != "") { 
-        $checkUser = "SELECT * FROM `users` WHERE `email` = '$email'";
-        $checkUserStatus = mysqli_query($conn,$checkUser) or die(mysqli_error($conn));
+        $query = "SELECT * FROM 'users' WHERE 'email' = '$email'";
+        $queryRes = mysqli_query($conn,$query) or die(mysqli_error($conn));
 
-        if(mysqli_num_rows($checkUserStatus) > 0) { // if user exists
-
-            password_verify($password,$checkUserStatus['password']);
-
-
+        if(mysqli_num_rows($queryRes) > 0) { // if user exists
+                $pw = mysqli_query($conn,"SELECT 'password' FROM 'users' WHERE 'email' = '$email'");
+                if(password_verify($password,$pw)){
+                    header('Location: ../chats.php?message=Welcome back');
+                }
+            
         } else {
-
             header('Location: ../index.php?message=Unable to login into your account!');
 
         }
