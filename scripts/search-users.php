@@ -13,7 +13,7 @@
 
     if($search != "") { 
 
-        $searchUser = "SELECT * FROM users WHERE name = '$search' OR email = '$search'";
+        $searchUser = "SELECT * FROM users WHERE name LIKE '$search%' OR email LIKE '$search%'";
         $searchUserStatus = mysqli_query($conn,$searchUser) or die(mysqli_error($conn));
         
         if(mysqli_num_rows($searchUserStatus) > 0) { 
