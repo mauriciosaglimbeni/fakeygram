@@ -42,7 +42,9 @@
         $getUserRow = mysqli_fetch_assoc($getUserStatus);
       ?>
       <li class = "nav-item">
-        <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+        <a href="profile.php">
+          <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+        </a>
       </li>
   </div>
 </nav>
@@ -61,18 +63,26 @@
         </div>
         <div class="card-body mb-4">
           <?php
-            $lastMessage = "SELECT DISTINCT sent_by FROM messages WHERE received_by = '$email'";
+            $lastMessage = "SELECT DISTINCT * FROM messages WHERE received_by = '$email' ORDER BY id DESC";
             $lastMessageStatus = mysqli_query($conn,$lastMessage) or die(mysqli_error($conn));
             if(mysqli_num_rows($lastMessageStatus) > 0) {
               while($lastMessageRow = mysqli_fetch_assoc($lastMessageStatus)) {
                 $sent_by = $lastMessageRow['sent_by'];
+                $last_message = $lastMessageRow['message'];
                 $getSender = "SELECT * FROM users WHERE email = '$sent_by'";
                 $getSenderStatus = mysqli_query($conn,$getSender) or die(mysqli_error($conn));
                 $getSenderRow = mysqli_fetch_assoc($getSenderStatus);
+
+                if(strlen($last_message) > 55){
+                  $last_message = substr($last_message,0,55);
+                }
           ?>
           <div class="card">
             <div class="card-body">
-              <h6><strong><img src = "./pfp/<?=$getSenderRow['pfp']?>" alt = "pfp" width = "40"/> <?=$lastMessageRow['sent_by'];?></strong><a href="./message.php?receiver=<?=$sent_by?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
+              <img src = "./pfp/<?=$getSenderRow['pfp']?>" alt = "pfp" width = "40"/>
+              <span><strong><?=$getSenderRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['sent_by'];?></span>
+              <span><strong class="font-weight-light" style="position:absolute; left:50%;"><?= $last_message?></strong></span>
+              <a href="./message.php?receiver=<?=$sent_by?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
             </div>
           </div><br/>
           <?php
@@ -89,11 +99,10 @@
       </div>
     </div>
 
-    <!-- Bootstrap scripts -->
+    <!-- scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <!-- Scripts -->
     <script src="extra/js/snackbar.js"></script>
 </body>
 </html>

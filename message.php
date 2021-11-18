@@ -44,10 +44,13 @@
         $getUserRow = mysqli_fetch_assoc($getUserStatus);
       ?>
       <li class = "nav-item">
-        <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+        <a href="profile.php">
+          <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+        </a>
       </li>
   </div>
 </nav>
+
     <div class="container">
         <?php
             $getReceiver = "SELECT * FROM users WHERE email = '$receiver'";

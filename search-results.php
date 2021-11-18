@@ -25,15 +25,14 @@
 <body onLoad = "myFunction()">
 
     <!-- Navbar -->
-     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-       <span class="navbar-toggler-icon"></span>
-     </button>
+  <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
         <a class="navbar-brand" href="./chats.php">Home </a>
       </li>
@@ -46,7 +45,9 @@
         $getUserRow = mysqli_fetch_assoc($getUserStatus);
       ?>
       <li class = "nav-item">
-        <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+        <a href="profile.php">
+          <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+        </a>
       </li>
   </div>
 </nav>
@@ -73,7 +74,7 @@
           ?>
           <div class="card">
             <div class="card-body">
-                <h6><strong><img src = "./pfp/<?=$searchUserRow['pfp']?>" alt = "pfp" width = "40"/><?=$searchUserRow['name']?></strong><a href="./message.php?receiver=<?=$email?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
+                <h6><strong><img src = "./pfp/<?=$searchUserRow['pfp']?>" alt = "pfp" width = "40"/><?=$searchUserRow['name']?></strong><span class="text-muted">  <?=$email;?></span><strong><a href="./message.php?receiver=<?=$email?>" class="btn btn-outline-primary" style ="float:right">Send message</a></strong></h6>
             </div>
           </div>
           <?php
