@@ -9,6 +9,8 @@
     } else {
       header('Location: ./index.php?message=Please login first');
     }
+
+    $user = $_GET['user'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +21,7 @@
     <link rel="stylesheet" href="extra/css/snackbar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
-        form,input{
+        form,input, button{
             margin-bottom: 5px;
         }
     </style>
@@ -47,7 +49,7 @@
         $getUserRow = mysqli_fetch_assoc($getUserStatus);
       ?>
       <li class = "nav-item">
-        <a href="profile.php">
+        <a href="profile.php?user=<?=$email?>">
           <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
         </a>
       </li>
@@ -66,20 +68,25 @@
                 <div class="card-body"> 
                     <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "160" height="160" style="float: left;"/>
                     <div style="display: inline-block; position:relative;left:5% ">
-                    <strong>- E-mail: <span class="text-muted"><?=$email?></span></strong>
-                    <strong><br/>- Name: <span class="text-muted"><?=$getUserRow['name']?></span></strong>
-                    <strong><br/><br/> Update your profile:</strong>
-                    <strong><br/>- Name: </strong>
-                    <form class=" customize"method = "POST" action = "./scripts/changeName.php">
-                        <input class="form-control mr-sm-2" type="text" name = "newName" placeholder="Type a new name">
-                        <button class="btn btn-primary" type="submit">Update</button>
+                        <strong>- E-mail: <span class="text-muted"><?=$email?></span></strong>
+                        <strong><br/>- Name: <span class="text-muted"><?=$getUserRow['name']?></span></strong>
+                        <strong><br/>- Status: <span class="text-muted"><?=$getUserRow['status']?></span></strong>
+                        <strong><br/>- Age: <span class="text-muted"><?=$getUserRow['age']?></span></strong>
+                     </div>
+                     <?php
+                          if($email == $user) {
+                     ?>
+                    <strong style="position:relative; left:2em;"><br/><br/> Update your profile: <br</strong>
+                    <form class="form-inline customize"method = "POST" action = "./scripts/changeProfile.php">
+                        <input class="form-control mr-sm-2" type="text" name = "newName" placeholder="Type a new name" autocomplete="off">     
+                        <input class="form-control mr-sm-2" type="text" name = "status" placeholder="How are you feeling?" autocomplete="off">
+                        <input class="form-control mr-sm-2" type="text" name="age" placeholder="Type your age" autocomplete="off">
+                        <input type="file" class="form-control" id="pfp" name = "pfp" />
+                        <button class="btn btn-primary" type="submit" id="submitPfp">Update</button>
                     </form>
-                    <strong>- Profile Picture: </strong>
-                    <form class="form-inline customize"method = "POST" action = "./scripts/changePfp.php">
-                            <input type="file" class="form-control-file" id="newPfp" name = "newPfp" />
-                            <button class="btn btn-primary" type="submit" id="submitPfp">Update</button>
-                    </form>
-                </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     <!--  scripts -->

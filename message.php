@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-       <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +44,7 @@
         $getUserRow = mysqli_fetch_assoc($getUserStatus);
       ?>
       <li class = "nav-item">
-        <a href="profile.php">
+        <a href="profile.php?user=<?=$email?>">
           <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
         </a>
       </li>
@@ -112,7 +112,7 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <input type="text" name = "message" id = "message" class="form-control" placeholder = "Type your message here" required/>
+                                <input type="text" name = "message" id = "message" class="form-control" placeholder = "Type your message here" autocomplete="off" required/>
                             </div>
                         </div>
                         <div class="col-md-2">

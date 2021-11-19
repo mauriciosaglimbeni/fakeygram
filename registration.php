@@ -36,10 +36,10 @@
             <div class="card-body">
                 <form action="scripts/register.php" method = "POST" enctype = "multipart/form-data">
                     <div class="form-group">
-                        <input type="text" name = "name" id = "name" placeholder = " Name" class = "form-control" required/>
+                        <input type="text" name = "name" id = "name" placeholder = " Name" class = "form-control" autocomplete="off" required/>
                     </div>
                     <div class="form-group">
-                        <input type="email" name = "email" id = "email" placeholder = "E-mail" class="form-control" required/>
+                        <input type="email" name = "email" id = "email" placeholder = "E-mail" class="form-control" autocomplete="off" required/>
                     </div>
                     <div class="form-group">
                         <input type="password" name = "password" id = "password" placeholder = "Password" class="form-control" required/>

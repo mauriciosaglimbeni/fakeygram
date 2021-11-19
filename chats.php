@@ -42,7 +42,7 @@
         $getUserRow = mysqli_fetch_assoc($getUserStatus);
       ?>
       <li class = "nav-item">
-        <a href="profile.php">
+        <a href="profile.php?user=<?=$email?>">
           <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
         </a>
       </li>
@@ -57,7 +57,7 @@
       <div class="card">
         <div class="card-title text-center">
           <form class="form-inline mt-4" style = "display : inline-block" method = "POST" action = "scripts/search-users.php">
-            <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search" autocomplete="off">
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>

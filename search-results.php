@@ -45,7 +45,7 @@
         $getUserRow = mysqli_fetch_assoc($getUserStatus);
       ?>
       <li class = "nav-item">
-        <a href="profile.php">
+        <a href="profile.php?user=<?=$email?>">
           <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
         </a>
       </li>
