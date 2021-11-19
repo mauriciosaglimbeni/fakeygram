@@ -55,7 +55,7 @@
     <!-- chats-->
     <div class="container mt-4">
       <?php
-        include "common/snackbar.php";
+         include "extra/snackbar.php";
       ?>
       <div class="card">
         <div class="card-title text-center">

@@ -76,8 +76,8 @@
                     </form>
                     <strong>- Profile Picture: </strong>
                     <form class="form-inline customize"method = "POST" action = "./scripts/changePfp.php">
-                            <input type="file" class="form-control-file" id="pfp" name = "pfp" />
-                        <button class="btn btn-primary" type="submit">Update</button>
+                            <input type="file" class="form-control-file" id="newPfp" name = "newPfp" />
+                            <button class="btn btn-primary" type="submit" id="submitPfp">Update</button>
                     </form>
                 </div>
             </div>

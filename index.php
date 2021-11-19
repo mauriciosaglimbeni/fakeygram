@@ -25,7 +25,7 @@
 
     <div class="container mt-4 text-center">
         <?php
-            include "common/snackbar.php";
+         include "extra/snackbar.php";
         ?>
         <div class="card" style = "display : inline-block">
             <div class="card-title mt-4">

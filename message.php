@@ -53,29 +53,49 @@
 
     <div class="container">
         <?php
+            include "extra/snackbar.php";
+        ?>
+        <?php
             $getReceiver = "SELECT * FROM users WHERE email = '$receiver'";
             $getReceiverStatus = mysqli_query($conn,$getReceiver) or die(mysqli_error($conn));
             $getReceiverRow = mysqli_fetch_assoc($getReceiverStatus);
-            $received_by = $getReceiverRow['email'];
+            $received_by = $getReceiverRow['name'];
         ?>
         <div class="card mt-4">
             <div class="card-header">
-                <h6><img src="./pfp/<?=$getReceiverRow['pfp']?>" alt="Profile image" width = "40"/><strong> <?=$receiver?></strong></h6>
+                <h6><img src="./pfp/<?=$getReceiverRow['pfp']?>" alt="Profile image" width = "40"/><strong> <?=$received_by?>  </strong><span class="text-muted"><?= $getReceiverRow['email']?></span></h6>
             </div>
+            
             <?php
                 $getMessage = "SELECT * FROM messages WHERE sent_by = '$receiver' AND received_by = '$email' OR sent_by = '$email' AND received_by = '$receiver' ORDER BY createdAt asc";
                 $getMessageStatus = mysqli_query($conn,$getMessage) or die(mysqli_error($conn));
                 if(mysqli_num_rows($getMessageStatus) > 0) {
                     while($getMessageRow = mysqli_fetch_assoc($getMessageStatus)) {
                         $message_id = $getMessageRow['id'];
+                        $sent_by = $getMessageRow['sent_by'];
+                        $getName = "SELECT name FROM users WHERE email = '$sent_by'";
+                        $getNameStatus = mysqli_query($conn,$getName);
+                        $getNameRow = mysqli_fetch_assoc($getNameStatus);
+                        if($sent_by == $email){
+
             ?>
-            <div class="card-body">
-            <h6 style = "color: #007bff"><?=$getMessageRow['sent_by']?></h6>
-                <div class="message-box ml-4">    
+            <div class="card-body" style="float: right;">
+            <!-- <h6 style = "color: #007bff; float:right; ">You</h6> -->
+                <div class="message-box ml-4" style="float:right; background-color:lightgray">    
                     <p class="text-center"><?=$getMessageRow['message']?></p>
                 </div>
             </div>
             <?php
+                        }else{
+            ?>
+            <div class="card-body">
+             <!-- <h6 style = "color: #007bff"><?=$getNameRow['name']?></h6> -->
+                <div class="message-box ml-4;" >    
+                    <p class="text-center"><?=$getMessageRow['message']?></p>
+                </div>
+            </div>
+            <?php 
+                        }
                     } 
                 } else {
             ?>

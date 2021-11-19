@@ -48,7 +48,7 @@
                         <input type="password" name = "cpassword" id = "cpassword" placeholder = "Confirm Password" class="form-control" required/>
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlFile1">Upload a profile picture</label>
+                        <label for="exampleFormControlFile1">Upload a profile picture (optional)</label>
                         <input type="file" class="form-control-file" id="pfp" name = "pfp" />
                     </div>
                     <button type = "submit" class = "btn btn-primary">Register</button>

@@ -8,7 +8,6 @@
     $email = "";
     $password = "";
     $cpassword = "";
-    // $salt = uniqid();
 
     // getting form data
     if(isset($_POST['name'])) {
