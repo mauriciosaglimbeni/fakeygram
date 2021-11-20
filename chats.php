@@ -33,6 +33,9 @@
       <li class="nav-item active">
         <a class="navbar-brand" href="./chats.php">Home </a>
       </li>
+      <li class="nav-item active">
+        <a class="navbar-brand" href="./friends.php">Friends</a>
+      </li>
       <li class="nav-item">
         <a class="navbar-brand" href="./logout.php">Logout</a>
       </li>

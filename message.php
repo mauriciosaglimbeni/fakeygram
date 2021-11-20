@@ -23,34 +23,37 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="navbar-brand" href="./chats.php">Home </a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="./logout.php">Logout</a>
-      </li>
-      <?php
-        $getUser = "SELECT * FROM users WHERE email = '$email'";
-        $getUserStatus = mysqli_query($conn,$getUser) or die(mysqli_error($conn));
-        $getUserRow = mysqli_fetch_assoc($getUserStatus);
-      ?>
-      <li class = "nav-item">
-        <a href="profile.php?user=<?=$email?>">
-          <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
-        </a>
-      </li>
-  </div>
-</nav>
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="navbar-brand" href="./chats.php">Home </a>
+        </li>
+        <li class="nav-item active">
+            <a class="navbar-brand" href="./friends.php">Friends</a>
+        </li>
+        <li class="nav-item">
+            <a class="navbar-brand" href="./logout.php">Logout</a>
+        </li>
+        <?php
+            $getUser = "SELECT * FROM users WHERE email = '$email'";
+            $getUserStatus = mysqli_query($conn,$getUser) or die(mysqli_error($conn));
+            $getUserRow = mysqli_fetch_assoc($getUserStatus);
+        ?>
+        <li class = "nav-item">
+            <a href="profile.php?user=<?=$email?>">
+            <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+            </a>
+        </li>
+    </div>
+    </nav>
+<!-- Messages screen-->
     <div class="container">
         <?php
             include "extra/snackbar.php";
@@ -60,10 +63,34 @@
             $getReceiverStatus = mysqli_query($conn,$getReceiver) or die(mysqli_error($conn));
             $getReceiverRow = mysqli_fetch_assoc($getReceiverStatus);
             $received_by = $getReceiverRow['name'];
+
+            // RECOVERING FRIENDSHIP STATUS
+            $user_id = $getUserRow['id'];
+            $receiver_id = $getReceiverRow['id'];
+            $checkExist = "SELECT * FROM friendship WHERE (fromWho = '$user_id' AND toWho = '$receiver_id') OR  (fromWho = '$receiver_id' AND  toWho ='$user_id')";
+            $checkExistStatus = mysqli_query($conn,$checkExist);
+            if($checkExistStatus){
+                $getExistRow = mysqli_fetch_assoc($checkExistStatus);
+                $fStatus = $getExistRow['fStatus'];
+            }else{
+                $fStatus = 'N';
+            }
+            
+
         ?>
         <div class="card mt-4">
             <div class="card-header">
-                <h6><img src="./pfp/<?=$getReceiverRow['pfp']?>" alt="Profile image" width = "40"/><strong> <?=$received_by?>  </strong><span class="text-muted"><?= $getReceiverRow['email']?></span></h6>
+                <h6><img src="./pfp/<?=$getReceiverRow['pfp']?>" alt="Profile image" width = "40"/><strong> <?=$received_by?>  </strong><span class="text-muted"><?= $getReceiverRow['email']?></span>
+              
+              
+              <?php // OPTION FOR ADDING FRIEND
+                    if($fStatus == 'N'){
+                ?>
+                <a style ="float:right;" href="./scripts/addFriend.php?receiver=<?=$receiver?>"> <button  type = "submit" class="btn btn-primary">Add Friend</button> </a>
+                <?php
+                    }
+                ?>
+            </h6>
             </div>
             
             <?php

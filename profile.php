@@ -77,12 +77,12 @@
                           if($email == $user) {
                      ?>
                     <strong style="position:relative; left:2em;"><br/><br/> Update your profile: <br</strong>
-                    <form class="form-inline customize"method = "POST" action = "./scripts/changeProfile.php">
+                    <form style="display:flex; flex-direction:column; align-content:flex-start;" class="form-inline customize"method = "POST" action = "./scripts/changeProfile.php"  enctype = "multipart/form-data">
                         <input class="form-control mr-sm-2" type="text" name = "newName" placeholder="Type a new name" autocomplete="off">     
                         <input class="form-control mr-sm-2" type="text" name = "status" placeholder="How are you feeling?" autocomplete="off">
                         <input class="form-control mr-sm-2" type="text" name="age" placeholder="Type your age" autocomplete="off">
                         <input type="file" class="form-control" id="pfp" name = "pfp" />
-                        <button class="btn btn-primary" type="submit" id="submitPfp">Update</button>
+                        <button class="btn btn-primary" type="submit" id="submit">Update</button>
                     </form>
                 <?php
                 }

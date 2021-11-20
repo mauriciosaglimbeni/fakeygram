@@ -23,8 +23,8 @@
     if(isset($_POST['age']));{
         $age = $_POST['age'];
     }
-
-    // setting up the image settings for profile pictures
+    
+     // setting up the image settings for profile pictures
     $target_dir = "../pfp/";
     $target_file = $target_dir . basename($_FILES["pfp"]["name"]);
     $uploadOk = 1;
@@ -59,7 +59,7 @@
         $uploadOk = 0;
     }
 }
-if($newName != '' && $status != '' && $age != ''){
+if($newName != '' || $status != '' || $age != ''){
     if($newName != ''){
             if($uploadOk != 0){
             $image = basename($_FILES["pfp"]["name"]);
@@ -78,11 +78,11 @@ if($newName != '' && $status != '' && $age != ''){
     $updateUserStatus = mysqli_query($conn,$updateUser) or die(mysqli_error($conn));
     
     if($updateUserStatus){
-        header('Location: ../profile.php?message= Your profile was succesfully updated!');
+        header('Location: ../profile.php?user='.$email.'&message= Your profile was succesfully updated!');
     }else{
-        header('Location: ../profile.php?message= Your profile couldn´t be updated');
+        header('Location: ../profile.php?user='.$email.'&message= Your profile couldn´t be updated');
     }
 }else{
-    header('Location:../profile.php?message= Please fill the fields!');
+    header('Location:../profile.php?user='.$email.'&message= Please fill the fields!');
 }
 ?>
