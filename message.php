@@ -156,12 +156,13 @@
             <input type="hidden" name = "sent_by" value = "<?=$email?>"/>
             <input type="hidden" name = "received_by" value = "<?=$receiver?>"/>
                     <div class="row">
-                        <div class="col-md-10">
+                       <!-- <a href="./scripts/uploadPic.php"><i class="fa fa-paperclip col-md-0" aria-hidden="true" style="font-size:2em; color:gray"></i></a> -->
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <input type="text" name = "message" id = "message" class="form-control" placeholder = "Type your message here" autocomplete="off" required/>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <button type = "submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>
