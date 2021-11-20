@@ -92,6 +92,7 @@
               <img src = "./pfp/<?=$getReceiverDataRow['pfp']?>" alt = "pfp" width = "40"/>
               <span><strong><?=$getReceiverDataRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['received_by'];?></span>
               <span><strong class="font-weight-light" style="position:absolute; left:40%;"><?= $last_message?></strong></span>
+              <a href="./message.php?receiver=<?=$lastMessageRow['received_by'];?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
               <span class="font-weightReceiverData" style="float:right;margin-right:5px; font-size:0.8em"><?=$lastMessageRow['createdAt']?></span>
             </div>
           </div><br/>
