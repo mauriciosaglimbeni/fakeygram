@@ -28,50 +28,56 @@
 </head>
 <body onLoad = "myFunction()">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="navbar-brand" href="./chats.php">Home </a>
-      </li>
-      <li class="nav-item">
-        <a class="navbar-brand" href="./logout.php">Logout</a>
-      </li>
-      <?php
-        $getUser = "SELECT * FROM users WHERE email = '$email'";
-        $getUserStatus = mysqli_query($conn,$getUser) or die(mysqli_error($conn));
-        $getUserRow = mysqli_fetch_assoc($getUserStatus);
-      ?>
-      <li class = "nav-item">
-        <a href="profile.php?user=<?=$email?>">
-          <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
-        </a>
-      </li>
-  </div>
-</nav>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="navbar-brand" href="./chats.php">Home </a>
+        </li>
+        <li class="nav-item active">
+            <a class="navbar-brand" href="./friends.php">Friends</a>
+        </li>
+        <li class="nav-item">
+            <a class="navbar-brand" href="./logout.php">Logout</a>
+        </li>
+        <?php
+            $getUser = "SELECT * FROM users WHERE email = '$email'";
+            $getUserStatus = mysqli_query($conn,$getUser) or die(mysqli_error($conn));
+            $getUserRow = mysqli_fetch_assoc($getUserStatus);
+        ?>
+        <li class = "nav-item">
+            <a href="profile.php?user=<?=$email?>">
+            <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "40" class = "dropdown"/>
+            </a>
+        </li>
+    </div>
+    </nav>
 
 <!-- profile area -->
 <div class="container mt-4">
       <?php
         include "extra/snackbar.php";
+        $getProfile = "SELECT * FROM users WHERE email = '$user'";
+        $getProfileStatus = mysqli_query($conn,$getProfile) or die(mysqli_error($conn));
+        $getProfileRow = mysqli_fetch_assoc($getProfileStatus);
       ?>
         <div class="card">
             <div class="card-title text-center">
                 <h6> Welcome back <?=$getUserRow['name']?>!</h6>
             </div>
                 <div class="card-body"> 
-                    <img src="./pfp/<?=$getUserRow['pfp']?>" alt="Profile image" width = "160" height="160" style="float: left;"/>
+                    <img src="./pfp/<?=$getProfileRow['pfp']?>" alt="Profile image" width = "160" height="160" style="float: left;"/>
                     <div style="display: inline-block; position:relative;left:5% ">
-                        <strong>- E-mail: <span class="text-muted"><?=$email?></span></strong>
-                        <strong><br/>- Name: <span class="text-muted"><?=$getUserRow['name']?></span></strong>
-                        <strong><br/>- Status: <span class="text-muted"><?=$getUserRow['status']?></span></strong>
-                        <strong><br/>- Age: <span class="text-muted"><?=$getUserRow['age']?></span></strong>
+                        <strong>- E-mail: <span class="text-muted"><?=$user?></span></strong>
+                        <strong><br/>- Name: <span class="text-muted"><?=$getProfileRow['name']?></span></strong>
+                        <strong><br/>- Status: <span class="text-muted"><?=$getProfileRow['status']?></span></strong>
+                        <strong><br/>- Age: <span class="text-muted"><?=$getProfileRow['age']?></span></strong>
                      </div>
                      <?php
                           if($email == $user) {

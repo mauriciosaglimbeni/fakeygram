@@ -69,8 +69,8 @@
             $receiver_id = $getReceiverRow['id'];
             $checkExist = "SELECT * FROM friendship WHERE (fromWho = '$user_id' AND toWho = '$receiver_id') OR  (fromWho = '$receiver_id' AND  toWho ='$user_id')";
             $checkExistStatus = mysqli_query($conn,$checkExist);
-            if($checkExistStatus){
-                $getExistRow = mysqli_fetch_assoc($checkExistStatus);
+            $getExistRow = mysqli_fetch_assoc($checkExistStatus);
+            if($getExistRow > 0){
                 $fStatus = $getExistRow['fStatus'];
             }else{
                 $fStatus = 'N';
@@ -98,7 +98,23 @@
                 $getMessageStatus = mysqli_query($conn,$getMessage) or die(mysqli_error($conn));
                 if(mysqli_num_rows($getMessageStatus) > 0) {
                     while($getMessageRow = mysqli_fetch_assoc($getMessageStatus)) {
+                        
                         $message_id = $getMessageRow['id'];
+                        $date = $getMessageRow['createdAt'];
+                        $year = substr($date,0,4); 
+                        $month =substr($date,5,2);
+                        $day = substr($date,8,2);
+                        if(date('Y') == $year){
+                            $writtenDate = substr($date,5);
+                            if(date('m') == $month){
+                                $writtenDate = substr($date,8);
+                            }
+                            if(date('d') == $day){
+                                $writtenDate = substr($date,10);
+                            }
+                        }else{
+                            $writtenDate = $date;
+                        }
                         $sent_by = $getMessageRow['sent_by'];
                         $getName = "SELECT name FROM users WHERE email = '$sent_by'";
                         $getNameStatus = mysqli_query($conn,$getName);
@@ -109,7 +125,7 @@
             <div class="card-body" style="float: right;">
             <!-- <h6 style = "color: #007bff; float:right; ">You</h6> -->
                 <div class="message-box ml-4" style="float:right; background-color:lightgray">    
-                    <p class="text-center"><?=$getMessageRow['message']?></p>
+                    <p class="text-center"><?=$getMessageRow['message']?> </p><span style="float: right; opacity:0.7;font-size:0.7em; margin-top:-5%"><?=$writtenDate?></span>
                 </div>
             </div>
             <?php
@@ -118,7 +134,7 @@
             <div class="card-body">
              <!-- <h6 style = "color: #007bff"><?=$getNameRow['name']?></h6> -->
                 <div class="message-box ml-4;" >    
-                    <p class="text-center"><?=$getMessageRow['message']?></p>
+                    <p class="text-center"><?=$getMessageRow['message']?></p><span style="float: right;opacity:0.7; font-size:0.7em"><?=$writtenDate?></span>
                 </div>
             </div>
             <?php 

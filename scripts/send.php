@@ -7,7 +7,7 @@
     $sent_by = "";
     $received_by = "";
     $message = "";
-    $createdAt = date("Y-m-d h:i:sa");
+    $createdAt = date("Y-m-d h:ia");
 
     // getting form data
     if(isset($_POST['sent_by'])) {

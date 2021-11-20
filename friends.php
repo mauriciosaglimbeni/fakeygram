@@ -61,11 +61,80 @@
             </div>
             <div class="card-body">
                 <strong> Pending requests: </strong>
+                <!-- CODE AND HTML TO GET FRIEND REQUEST DATA AND REDIRECT ACCORDINGLY, 
+                    HTML SHOWS WETHER THERE ARE PENDING REQUESTS OR NOT -->
+                <?php
+                    $user_id = $getUserRow['id'];
+                    $getPending = "SELECT * FROM friendship WHERE toWho = '$user_id'";
+                    $getPendingStatus = mysqli_query($conn,$getPending);
+                    if(mysqli_num_rows($getPendingStatus) > 0){
+                        while($getPendingRow = mysqli_fetch_assoc($getPendingStatus)){
+                            if($getPendingRow['fStatus'] == 'P'){
+                                $from_Who = $getPendingRow['fromWho'];
+                                $getSender = "SELECT * FROM users WHERE id = '$from_Who'";
+                                $getSenderStatus = mysqli_query($conn,$getSender) or die(mysqli_error($conn));
+                                $getSenderRow = mysqli_fetch_assoc($getSenderStatus);
+                        
+                ?>
+                 <div class="card">
+                    <div class="card-body">
+                        <img src = "./pfp/<?=$getSenderRow['pfp']?>" alt = "pfp" width = "40"/>
+                        <span><strong><?=$getSenderRow['name']?></strong></span> <span class="text-muted"><?=$getSenderRow['email'];?></span>
+                        <a href="./scripts/declineFriend.php?friend=<?=$getSenderRow['email'];?>" class="btn btn-outline-secondary" style = "float:right">Decline</a></h6>
+                        <a href="./scripts/acceptFriend.php?friend=<?=$getSenderRow['email'];?>" class="btn btn-outline-primary" style = "float:right;margin-right:5px;">Accept</a></h6>
+                    </div>
+                </div><br/>
                 
+                 <?php
+                        }
+                    }
+                    }else{
+                ?>
+                <div class="card-body">
+                        <div class="text-center"> No friend requests yet!</div>
+                    </div>
+                <?php
+                        }
+                ?>
             </div>
+            
             <div class="card-body">
                 <strong> Friends: </strong>
+                <!-- CODE AND HTML TO GET FRIEND DATA AND REDIRECT TO THEIR PROFILE, 
+                     HTML SHOWS WETHER THERE ARE FRIENDS OR NOT -->
+                     <?php
+                    $user_id = $getUserRow['id'];
+                    $getFriends = "SELECT * FROM friendship WHERE fStatus = 'F' AND (fromWho = '$user_id' OR toWho = '$user_id')";
+                    $getFriendsStatus = mysqli_query($conn,$getFriends);
+                    if(mysqli_num_rows($getFriendsStatus) > 0){
+                        while($getFriendsRow = mysqli_fetch_assoc($getFriendsStatus)){
+                            if($getFriendsRow['fromWho'] == $user_id){
+                                 $friend_id = $getFriendsRow['toWho'];
+                            }else{
+                                 $friend_id = $getFriendsRow['fromWho'];
+                             }
+                            $getFriendId = "SELECT * FROM users WHERE id = '$friend_id'";
+                            $getFriendIdStatus = mysqli_query($conn,$getFriendId);
+                            $getFriendIdRow = mysqli_fetch_assoc($getFriendIdStatus);
+                ?>
+                <div class="card">
+                    <div class="card-body">
+                        <img src = "./pfp/<?=$getFriendIdRow['pfp']?>" alt = "pfp" width = "40"/>
+                        <span><strong><?=$getFriendIdRow['name']?></strong></span> <span class="text-muted"><?=$getFriendIdRow['email'];?></span>
+                        <a href="./profile.php?user=<?=$getFriendIdRow['email'];?>" class="btn btn-outline-primary" style = "float:right;">View Profile</a></h6>
+                    </div>
+                </div><br/>
+                <?php
+                    }
+                }else{
+                ?>
+                <div class="card-body">
+                        <div class="text-center"> No friends yet!</div>
+                    </div>
             </div>
+                <?php
+                    }
+                ?>
          </div>
     </div>
     <!-- scripts -->
