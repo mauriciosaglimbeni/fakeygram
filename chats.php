@@ -62,8 +62,9 @@
       ?>
       <div class="card">
         <div class="card-title text-center">
+        <strong> Inbox<br/> </strong>
           <form class="form-inline mt-4" style = "display : inline-block" method = "POST" action = "scripts/search-users.php">
-            <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search" autocomplete="off">
+            <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search users" aria-label="Search users" autocomplete="off">
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
