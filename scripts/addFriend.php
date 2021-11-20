@@ -30,5 +30,8 @@
    
          $insertExist = "INSERT INTO friendship (fromWho,toWho,fStatus) VALUES ('$user_id','$receiver_id','P')";
          $insertExistStatus = mysqli_query($conn,$insertExist);
+         if(!$insertExistStatus){
+             $updateExist =  "UPDATE friendship SET fStatus = 'P 'WHERE fromWho ='$user_id' AND toWho = '$receiver_id'";
+         }
          header("Location: ../message.php?receiver=$receiver");
 ?>
