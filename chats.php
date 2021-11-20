@@ -21,8 +21,8 @@
 </head>
 <body onLoad = "myFunction()">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <h4 style="color :#1e69d4;" class="navbar-brand">FakeyGram</h4>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="navbar-brand" href="./chats.php">Home </a>
+        <a class="navbar-brand" href="./chats.php">Inbox </a>
+      </li>
+      <li class="nav-item active">
+        <a class="navbar-brand" href="./outbox.php">Outbox </a>
       </li>
       <li class="nav-item active">
         <a class="navbar-brand" href="./friends.php">Friends</a>
@@ -76,16 +79,17 @@
                 $getSenderStatus = mysqli_query($conn,$getSender) or die(mysqli_error($conn));
                 $getSenderRow = mysqli_fetch_assoc($getSenderStatus);
 
-                if(strlen($last_message) > 55){
-                  $last_message = substr($last_message,0,55);
+                if(strlen($last_message) > 35){
+                  $last_message = substr($last_message,0,35);
                 }
           ?>
           <div class="card">
             <div class="card-body">
               <img src = "./pfp/<?=$getSenderRow['pfp']?>" alt = "pfp" width = "40"/>
               <span><strong><?=$getSenderRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['sent_by'];?></span>
-              <span><strong class="font-weight-light" style="position:absolute; left:50%;"><?= $last_message?></strong></span>
+              <span><strong class="font-weight-light" style="position:absolute; left:40%;"><?= $last_message?></strong></span>
               <a href="./message.php?receiver=<?=$sent_by?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
+              <span class="font-weight-light" style="float:right;margin-right:5px; font-size:0.8em"><?=$lastMessageRow['createdAt']?></span>
             </div>
           </div><br/>
           <?php
@@ -93,7 +97,7 @@
           } else {
           ?>
             <div class="card-body text-center">
-              <h6><strong>No conversations yet!</strong></h6>
+              <h6><strong>No messages yet!</strong></h6>
             </div>
           <?php
           }
