@@ -23,7 +23,7 @@
     $friend_id = $getFriendRow['id'];
 
     // UPDATING THE DB
-    $updateFriend = "UPDATE friendship SET fStatus = 'N 'WHERE fromWho ='$friend_id' AND toWho = '$user_id'"; 
+    $updateFriend = "DELETE FROM friendship WHERE (fromWho ='$friend_id' AND toWho = '$user_id') OR (fromWho='$user_id' AND toWho='$friend_id') "; 
     $updateFriendStatus = mysqli_query($conn,$updateFriend) or die(mysqli_error($conn));
 
     if($updateFriendStatus){

@@ -9,6 +9,9 @@
     } else {
       header('Location: ./index.php?message=Please login first');
     }
+    if($email == 'admin@root.com'){
+      header('Location: ./adminZone.php?message=Welcome back boss!');
+    }
 ?>
 <!DOCTYPE html>
 <html>
