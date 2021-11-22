@@ -14,11 +14,11 @@
     $user = $_GET['user'];
 
     // deleting the user and their friendships
-    $getUserId = "SELECT id FROM users WHERE email = '$email'";
+    $getUserId = "SELECT id FROM users WHERE email = '$user'";
     $getUserIdStatus = mysqli_query($conn,$getUserId);
     $getUserIdRow = mysqli_fetch_assoc($getUserIdStatus);
     $id = $getUserIdRow['id'];
-    $deleteUser = "DELETE FROM users WHERE email = '$email'";
+    $deleteUser = "DELETE FROM users WHERE id = '$id'";
     $deleteUserStatus = mysqli_query($conn, $deleteUser) or die(mysqli_error($conn));
 
     $deleteFriendships = "DELETE FROM friendships WHERE toWho = '$id' or fromWho = '$id'";
