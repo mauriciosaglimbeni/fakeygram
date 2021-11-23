@@ -124,6 +124,7 @@
                     <div class="card-body">
                         <img src = "./pfp/<?=$getFriendIdRow['pfp']?>" alt = "pfp" width = "40"/>
                         <span><strong><?=$getFriendIdRow['name']?></strong></span> <span class="text-muted"><?=$getFriendIdRow['email'];?></span>
+                        <a href="./scripts/deleteFriend.php?friend=<?=$getFriendIdRow['email'];?>" class="btn btn-outline-primary" style = "float:right;">Delete</a></h6>
                         <a href="./profile.php?user=<?=$getFriendIdRow['email'];?>" class="btn btn-outline-primary" style = "float:right;">View Profile</a></h6>
                     </div>
                 </div><br/>

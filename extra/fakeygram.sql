@@ -33,15 +33,6 @@ CREATE TABLE `friendship` (
   `fStatus` varchar(1) NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `friendship`
---
-
-INSERT INTO `friendship` (`fromWho`, `toWho`, `fStatus`) VALUES
-('27', '24', 'P'),
-('14', '24', 'P'),
-('26', '24', 'F'),
-('25', '24', 'F');
 
 -- --------------------------------------------------------
 
@@ -57,13 +48,6 @@ CREATE TABLE `messages` (
   `createdAt` varchar(255) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`id`, `sent_by`, `received_by`, `message`, `createdAt`) VALUES
-(2, 'naruto@gmail.com', 'mauricio@gmail.com', 'feo', '2021-11-20 10:03pm'),
-(3, 'naruto@gmail.com', 'mauricio@gmail.com', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2021-11-20 10:03pm');
 
 -- --------------------------------------------------------
 
