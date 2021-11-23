@@ -68,9 +68,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `name`, `password`, `pfp`, `status`, `age`) VALUES
-(12, 'adrian@gmail.com', 'Adrian Navarro', '$2y$10$0nVtglYx023wWCSN2ZRID.AnqV5mXno5dhzR0lG.muGA6XDhU0IAO', 'default.png', 'pretty gay', '21'),
-(24, 'naruto@gmail.com', 'Naruto', '$2y$10$A4VvvW/q7FewG.bZ0mgTjOOJIrvv5a01G6pcdM3b1pRtT0Q5..ZJO', 'naruto.png', 'DattebayO!', '17'),
-(31, 'admin@root.com', 'admin', '$2y$10$ysuHZmZpwQrM29PPiG2BDuBlvtXfZeVf55h7GctAzcJ6vuA2kwnjm', 'default.png', 'NOT SET', 'NOT SET');
+(3, 'adrian@gmail.com', 'Adrian Navarro', '$2y$10$0nVtglYx023wWCSN2ZRID.AnqV5mXno5dhzR0lG.muGA6XDhU0IAO', 'default.png', 'pretty gay', '21'),
+(2, 'naruto@gmail.com', 'Naruto', '$2y$10$A4VvvW/q7FewG.bZ0mgTjOOJIrvv5a01G6pcdM3b1pRtT0Q5..ZJO', 'naruto.png', 'DattebayO!', '17'),
+(1, 'admin@root.com', 'admin', '$2y$10$ysuHZmZpwQrM29PPiG2BDuBlvtXfZeVf55h7GctAzcJ6vuA2kwnjm', 'default.png', 'NOT SET', 'NOT SET');
 
 --
 -- Índices para tablas volcadas
@@ -102,7 +102,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
