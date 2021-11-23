@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 20, 2021 at 10:18 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 23-11-2021 a las 17:03:41
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fakeygram`
+-- Base de datos: `fakeygram`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `friendship`
+-- Estructura de tabla para la tabla `friendship`
 --
 
 CREATE TABLE `friendship` (
@@ -33,11 +33,10 @@ CREATE TABLE `friendship` (
   `fStatus` varchar(1) NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Estructura de tabla para la tabla `messages`
 --
 
 CREATE TABLE `messages` (
@@ -48,11 +47,10 @@ CREATE TABLE `messages` (
   `createdAt` varchar(255) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -66,49 +64,45 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `name`, `password`, `pfp`, `status`, `age`) VALUES
-(12, 'adrian@gmail.com', 'Adrian Navarro', '$2y$10$0nVtglYx023wWCSN2ZRID.AnqV5mXno5dhzR0lG.muGA6XDhU0IAO', 'default.png', 'NOT SET', 'NOT SET'),
-(14, 'mauricio@gmail.com', 'feo', '$2y$10$UflEDWRIEWCqd9QHJDNbFuZe2AQrBknAf.v6/ZyV0zTxFB3QKPTYO', 'default.png', 'NOT SET', 'NOT SET'),
-(19, 'test@gmail.com', 'Testo', '$2y$10$bh1K6GL9MgcY4mKSrcooV.1bptppBt2ZRXH9/pwjE8lrgMSxtyw8i', 'default.png', 'NOT SET', 'NOT SET'),
+(12, 'adrian@gmail.com', 'Adrian Navarro', '$2y$10$0nVtglYx023wWCSN2ZRID.AnqV5mXno5dhzR0lG.muGA6XDhU0IAO', 'default.png', 'pretty gay', '21'),
 (24, 'naruto@gmail.com', 'Naruto', '$2y$10$A4VvvW/q7FewG.bZ0mgTjOOJIrvv5a01G6pcdM3b1pRtT0Q5..ZJO', 'naruto.png', 'DattebayO!', '17'),
-(25, 'denji@gmail.com', 'Denji', '$2y$10$aQv15GvFofY3AKVgSQuilOr/EKGTkAQKVIJhJwnIePtiPfLdTplxy', 'original.jpg', 'aaaa', ''),
-(26, 'mariano@gmail.com', 'gay', '$2y$10$5YCJwbH.TyDafA73NOc8O.rVsR9z0GxNKYSJ6InLIWJwirC1Xq0.G', 'default.png', 'NOT SET', 'NOT SET'),
-(27, 'angel@gmail.com', 'angel', '$2y$10$9Yb9tM30hBo14T61p2.Gk.dq6RapYISBH3uHRuXvcN.ultnl4HmnS', 'angel.jpg', 'NOT SET', 'NOT SET');
+(31, 'admin@root.com', 'admin', '$2y$10$ysuHZmZpwQrM29PPiG2BDuBlvtXfZeVf55h7GctAzcJ6vuA2kwnjm', 'default.png', 'NOT SET', 'NOT SET');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `messages`
+-- Indices de la tabla `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT de la tabla `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

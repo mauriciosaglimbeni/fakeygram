@@ -22,6 +22,7 @@
         $message = $_POST['message'];
     }
 
+
     if($message != "") {
         $sendMessage = "INSERT INTO messages(sent_by,received_by,message,createdAt) VALUES('$sent_by','$received_by','$message','$createdAt')";
         $sendMessageStatus = mysqli_query($conn,$sendMessage) or die(mysqli_error($conn));
@@ -31,4 +32,5 @@
             header("Location: ../message.php?receiver=$received_by");
         }
     }
+
 ?>

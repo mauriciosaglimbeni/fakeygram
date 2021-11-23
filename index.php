@@ -40,9 +40,6 @@
                     <div class="form-group">
                         <input type="password" name = "password" id = "password" placeholder = "Password" class="form-control" required/>
                     </div>
-                    <div>
-                        <a style="position:relative; bottom:12px"href="#">Forgot your password?</a>
-                    </div>
                     <button type = "submit" class = "btn btn-primary">Log In</button>
                     <p class = "text-muted">New to FakeyGram? <a href="./registration.php">Sign Up Here!</a></p>
                 </form>

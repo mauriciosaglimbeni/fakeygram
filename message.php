@@ -153,20 +153,28 @@
             ?>
             <div class="card-footer text-center">
             <form action="scripts/send.php" method = "POST" style = "display: inline-block">
-            <input type="hidden" name = "sent_by" value = "<?=$email?>"/>
-            <input type="hidden" name = "received_by" value = "<?=$receiver?>"/>
-                    <div class="row">
-                       <!-- <a href="./scripts/uploadPic.php"><i class="fa fa-paperclip col-md-0" aria-hidden="true" style="font-size:2em; color:gray"></i></a> -->
-                        <div class="col-md-9">
+                <input type="hidden" name = "sent_by" value = "<?=$email?>"/>
+                <input type="hidden" name = "received_by" value = "<?=$receiver?>"/>
+                <div class="row">
+                        <div class="col-md-10">
                             <div class="form-group">
                                 <input type="text" name = "message" id = "message" class="form-control" placeholder = "Type your message here" autocomplete="off" required/>
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <button type = "submit" class="btn btn-primary">Send</button>
                         </div>
+            </form>
+                        <!-- <form action="./scripts/sendPic.php" method="POST" style="display:flex; flex-direction: row;">
+                            <input type="hidden" name = "sent_by" value = "<?=$email?>"/>
+                            <input type="hidden" name = "received_by" value = "<?=$receiver?>"/>            
+                            <label for="images" class="fa fa-paperclip col-md-1 " style="font-size:2em;cursor:pointer; color:gray;">
+                                 <input type="file"  style="display:none;" id="images" name="images"/>
+                            </label>    
+                            <button type="submit" name="submit2" class="btn btn-secondary" style="position:relative; left:1.5em;">Send pic</button>
+                        </form> -->
                     </div>
-                </form>
+                
             </div>
         </div>
     </div>
