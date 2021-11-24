@@ -11,6 +11,10 @@
         $email = $_SESSION['email'];
     }
     $receiver = $_GET['receiver'];
+
+    // marking messages received as read
+    $update = "UPDATE messages SET opened = 1 WHERE sent_by='$receiver' AND opened= 0";
+    $updateStatus = mysqli_query($conn,$update);
 ?>
 <!DOCTYPE html>
 <html>

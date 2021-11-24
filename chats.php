@@ -86,9 +86,10 @@
                 if(strlen($last_message) > 35){
                   $last_message = substr($last_message,0,35);
                 }
-          ?>
+                if($lastMessageRow['opened'] == 0){
+                  ?>
           <div class="card">
-            <div class="card-body">
+            <div class="card-body border border-primary ">
               <img src = "./pfp/<?=$getSenderRow['pfp']?>" alt = "pfp" width = "40"/>
               <span><strong><?=$getSenderRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['sent_by'];?></span>
               <span><strong class="font-weight-light" style="position:absolute; left:40%;"><?= $last_message?></strong></span>
@@ -97,6 +98,19 @@
             </div>
           </div><br/>
           <?php
+            }else{
+          ?>
+          <div class="card">
+            <div class="card-body ">
+              <img src = "./pfp/<?=$getSenderRow['pfp']?>" alt = "pfp" width = "40"/>
+              <span><strong><?=$getSenderRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['sent_by'];?></span>
+              <span><strong class="font-weight-light" style="position:absolute; left:40%;"><?= $last_message?></strong></span>
+              <a href="./message.php?receiver=<?=$sent_by?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
+              <span class="font-weight-light" style="float:right;margin-right:5px; font-size:0.8em"><?=$lastMessageRow['createdAt']?></span>
+            </div>
+          </div><br/>
+          <?php
+                }
             }
           } else {
           ?>

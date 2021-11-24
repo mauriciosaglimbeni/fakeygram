@@ -76,22 +76,34 @@
               while($lastMessageRow = mysqli_fetch_assoc($lastMessageStatus)) {
                 $sent_by = $lastMessageRow['sent_by'];
                 $last_message = $lastMessageRow['message'];
-                $getReceiver = "SELECT * FROM messages WHERE sent_by = '$sent_by'";
+                $receiver_email = $lastMessageRow['received_by'];
+
+                $getReceiver = "SELECT * FROM users WHERE email = '$receiver_email'";
                 $getReceiverStatus = mysqli_query($conn,$getReceiver) or die(mysqli_error($conn));
                 $getReceiverRow = mysqli_fetch_assoc($getReceiverStatus);
                 $receiver_email = $getReceiverRow['received_by'];
 
-                $getReceiverData = "SELECT * FROM users WHERE email='$receiver_email'";
-                $getReceiverDataStatus = mysqli_query($conn,$getReceiverData);
-                $getReceiverDataRow = mysqli_fetch_assoc($getReceiverDataStatus);
                 if(strlen($last_message) > 35){
                   $last_message = substr($last_message,0,35);
                 }
+                if($lastMessageRow['opened'] == 0){
           ?>
           <div class="card">
+            <div class="card-body border border-primary">
+              <img src = "./pfp/<?=$getReceiverRow['pfp']?>" alt = "pfp" width = "40"/>
+              <span><strong><?=$getReceiverRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['received_by'];?></span>
+              <span><strong class="font-weight-light" style="position:absolute; left:40%;"><?= $last_message?></strong></span>
+              <a href="./message.php?receiver=<?=$lastMessageRow['received_by'];?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
+              <span class="font-weightReceiverData" style="float:right;margin-right:5px; font-size:0.8em"><?=$lastMessageRow['createdAt']?></span>
+            </div>
+          </div><br/>
+          <?php
+            }else{
+            ?>
+            <div class="card">
             <div class="card-body">
-              <img src = "./pfp/<?=$getReceiverDataRow['pfp']?>" alt = "pfp" width = "40"/>
-              <span><strong><?=$getReceiverDataRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['received_by'];?></span>
+              <img src = "./pfp/<?=$getReceiverRow['pfp']?>" alt = "pfp" width = "40"/>
+              <span><strong><?=$getReceiverRow['name']?></strong></span> <span class="text-muted"><?=$lastMessageRow['received_by'];?></span>
               <span><strong class="font-weight-light" style="position:absolute; left:40%;"><?= $last_message?></strong></span>
               <a href="./message.php?receiver=<?=$lastMessageRow['received_by'];?>" class="btn btn-outline-primary" style = "float:right">Send message</a></h6>
               <span class="font-weightReceiverData" style="float:right;margin-right:5px; font-size:0.8em"><?=$lastMessageRow['createdAt']?></span>
@@ -99,14 +111,16 @@
           </div><br/>
           <?php
             }
+          }
           } else {
           ?>
             <div class="card-body text-center">
-              <h6><strong>No messages yet!</strong></h6>
+              <h6><strong>No sent messages yet!</strong></h6>
             </div>
           <?php
           }
           ?>
+          
         </div>
       </div>
     </div>
